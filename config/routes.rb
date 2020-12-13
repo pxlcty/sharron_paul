@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   root 'pages#home'
   get 'about', to: 'pages#about'
 
+  resources :events
+  
   # to build : 
-  #resources :events
   #resources :media
   #resources :admin, except: [:destroy] I think... (only one user admin)
   #get 'admin-login', to 'sessions#new'

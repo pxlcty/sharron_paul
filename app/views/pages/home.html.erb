@@ -7,35 +7,35 @@
     <div class="card-body">
       
       <p class="card-text">
-      <strong>Sharron Paul</strong> is a NYC-based actress, comedian, writer and producer. She co-hosts the long-running *CHEAP DATE* comedy show, which was deemed “One of the best things to do in Brooklyn” by TimeOut New York. She was named "One of the funniest women on Twitter" by the Huffington Post.
-        </p>
-        <p class="card-text">
-        Sharron has appeared on FOX, ABC, MTV, and A&E as well as a number of popular sketches and music videos. She co-starred in the series Political Fashion Chat on IAF TV, as well as the webseries’ Girls Are Roommates, Ghostedbusters, and 2 Self Help Books Away from Being Perfect. She was a writer & performer for the comedic political non-profit organization, Lady Parts Justice. Sharron appears on IFC’s Comedy Crib and also voices the character Francine on Amazon’s award-winning animated series “Fanny Fun Facts.”
-        </p>
-        <p class="card-text">        
-        Sharron Paul is an actress/comedian/writer/producer/podcaster from Brooklyn who will happily dive into anything in the entertainment field.
+      <%= @bio.short %>
       </p>
     </div>
     <div class="card-body">
-      <a href="#" class="card-link">Booking Enquiries</a>
+      <a href="#" class="card-link">Booking Inquiries</a>
     </div>
   </div>
     </div>
     
     <div class="home_content" id="home_content_events">
-            <div class="card" style="width: 24rem;">
-            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-            <div class="card-body">
-                <h5 class="card-title">Standup at the Stand</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <div class="card-body">
-            <a href="https://g.page/unionhallny?share" class="card-link">Location</a>
-            <a href="#" class="card-link">Date time</a>
-            
-            </div>
+
+    <% @events.each do |event| %>
+
+      <div class="card" style="width: 24rem;">
+        <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+        <div class="card-body">
+          <h5 class="card-title"><%= event.headline %></h5>
+          <p class="card-text"><%= event.short_description %></p>
         </div>
+        <div class="card-body">
+          <a href="https://g.page/unionhallny?share" class="card-link"><%= event.location %></a>
+          <a href="#" class="card-link"><%= event.time %></a>
+        </div>
+      </div>
+
+      <% end %>
+
 
     </div>
+
 
 </div></div>
