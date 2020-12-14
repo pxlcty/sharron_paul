@@ -10,8 +10,10 @@
       <%= @bio.short %>
       </p>
     </div>
-    <div class="card-body">
-      <a href="#" class="card-link">Booking Inquiries</a>
+    <div class="card-body text-right">
+    <button type="button" class="btn btn-secondary" id="home-inquiry-button-text"><%= mail_to 'services@mccracken.nyc', "Booking Inquiries", 
+    subject: "Booking Inguiries", 
+    body: "Good day Ms Paul, I would be interested in a conversation of booking you for our upcoming event."%></button>  
     </div>
   </div>
     </div>
@@ -23,12 +25,18 @@
       <div class="card" style="width: 24rem;">
         <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
         <div class="card-body">
-          <h5 class="card-title"><%= event.headline %></h5>
-          <p class="card-text"><%= event.short_description %></p>
+          <h5 class="card-title black-link-text"><%= link_to event.headline, event_path(event) %></h5>
+          <p class="card-text"><%= event.description_short %></p>
         </div>
         <div class="card-body">
-          <a href="https://g.page/unionhallny?share" class="card-link"><%= event.location %></a>
-          <a href="#" class="card-link"><%= event.time %></a>
+
+        <% unless event.location_url.empty? %>
+          <%= link_to event.location_name, event.location_url, class: "card-link" %>
+        <% else %>
+          <%= event.location_name %>
+        <% end %>
+      <br />
+          <%= event.time.to_formatted_s(:rfc822) %> <%= link_to 'details', event_path(event) %>
         </div>
       </div>
 

@@ -1,0 +1,71 @@
+<h2 class="text-center mt-4 text-white"><%= @event.headline %></h2>
+
+<div class="container">
+
+        <div class="row justify-content-md-center">
+        <div class="col-8 mt-4">
+        <div class="card text-center shadow mb-5 bg-white rounded">
+            <div class="card-header font-italic">
+            <%= image_tag @event.image_url %>
+            </div>
+            <div class="card-body">
+                <div class="card-text text-left">
+                <% if @event.description_long.empty?%>
+                    <%= simple_format(@event.description_short) %>
+                <% else %>
+                    <%= simple_format(@event.description_long) %>
+                <% end %>
+
+                </div>
+                
+                    <%= link_to 'Edit', edit_event_path(@event), class: "btn btn-outline-warning" %>
+                    <%= link_to 'Delete', event_path(@event), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
+                
+            </div>
+            <div class="card-footer">
+                <p>
+                <% if @event.location_url.empty? %>
+                    <%= @event.location_name %>
+                <% else %>
+                    <%= link_to @event.location_name, @event.location_url %>
+                <% end %>
+
+                <% unless @event.location_street.empty? %>
+                <br />
+                <%= @event.location_street %>,
+                <% end %>
+
+                <% unless @event.location_city.empty? %>
+                
+                <%= @event.location_city %>
+                <% end %>
+
+                <% unless @event.location_zip.empty? %>
+                
+                <%= @event.location_zip %>
+                <% end %>
+
+                <% unless @event.location_state.empty? %>
+                
+                <%= @event.location_state %>
+                <% end %>
+
+                </p>
+
+ 
+
+
+
+                <p><%= @event.time.strftime("%A, %B %d %Y at %I:%M %P") %></p>
+                <p><%= link_to 'tickets', @event.tickets_url unless @event.tickets_url.empty? %></p>
+                
+            </div>
+
+            <div class="card-footer text-muted">
+                <small>Created <%= time_ago_in_words(@event.created_at) %> ago, 
+                edited <%= time_ago_in_words(@event.updated_at) %> ago </small>
+            </div>
+        </div>
+        </div>
+        </div>
+</div>

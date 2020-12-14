@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_13_111540) do
+ActiveRecord::Schema.define(version: 2020_12_13_210348) do
 
   create_table "details", force: :cascade do |t|
     t.string "headline"
@@ -21,17 +21,22 @@ ActiveRecord::Schema.define(version: 2020_12_13_111540) do
 
   create_table "events", force: :cascade do |t|
     t.string "headline"
-    t.text "description"
-    t.string "location"
+    t.text "description_long"
+    t.string "location_name"
     t.string "location_url"
     t.string "image_url"
     t.datetime "time"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "short_description"
+    t.text "description_short"
     t.string "tickets_url"
     t.string "map_url"
     t.string "location_address"
+    t.string "location_street"
+    t.string "location_city"
+    t.string "location_zip"
+    t.string "location_state", default: "NY"
+    t.string "location_country", default: "USA"
   end
 
 end
