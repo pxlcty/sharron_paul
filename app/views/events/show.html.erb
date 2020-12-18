@@ -5,12 +5,14 @@
         <div class="row justify-content-md-center">
         <div class="col-8 mt-4">
         <div class="card text-center shadow mb-5 bg-white rounded">
-            <div class="card-header font-italic">
-            <%= image_tag @event.image_url %>
-            </div>
+            <% unless @event.image_url.blank? %>
+                <div class="card-header font-italic">
+                <%= image_tag @event.image_url %>
+                </div>
+            <% end %>
             <div class="card-body">
                 <div class="card-text text-left">
-                <% if @event.description_long.empty?%>
+                <% if @event.description_long.blank?%>
                     <%= simple_format(@event.description_short) %>
                 <% else %>
                     <%= simple_format(@event.description_long) %>
@@ -30,22 +32,22 @@
                     <%= link_to @event.location_name, @event.location_url %>
                 <% end %>
 
-                <% unless @event.location_street.empty? %>
+                <% unless @event.location_street.blank? %>
                 <br />
                 <%= @event.location_street %>,
                 <% end %>
 
-                <% unless @event.location_city.empty? %>
+                <% unless @event.location_city.blank? %>
                 
                 <%= @event.location_city %>
                 <% end %>
 
-                <% unless @event.location_zip.empty? %>
+                <% unless @event.location_zip.blank? %>
                 
                 <%= @event.location_zip %>
                 <% end %>
 
-                <% unless @event.location_state.empty? %>
+                <% unless @event.location_state.blank? %>
                 
                 <%= @event.location_state %>
                 <% end %>
@@ -57,7 +59,7 @@
 
 
                 <p><%= @event.time.strftime("%A, %B %d %Y at %I:%M %P") %></p>
-                <p><%= link_to 'tickets', @event.tickets_url unless @event.tickets_url.empty? %></p>
+                <p><%= link_to 'tickets', @event.tickets_url unless @event.tickets_url.blank? %></p>
                 
             </div>
 
