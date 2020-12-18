@@ -6,6 +6,7 @@ class PagesController < ApplicationController
     end
 
     def about
+        @bio = Detail.first
     end
 
 end

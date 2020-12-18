@@ -1,1 +1,14 @@
-<h2>Abooot page</h2>
+<div class="flex-center-container top-page-pushdown">
+    <div class="card" style="width: 80rem;">
+    <img class="card-img-top" src='<%=asset_path("bio_large.jpg")%>' alt="Card image cap">
+         <div class="card-body">
+            <p class="card-text"> 
+                <%= @bio.about_bio %>
+            </p>
+            <div class="card-body text-right">
+                <%= render 'inquirie_button' %>
+            </div>        
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+<button type="button" class="btn btn-secondary" id="home-inquiry-button-text">
+<%= mail_to @bio.inquiries_email, "Booking Inquiries", 
+            subject: @bio.inquiries_headline, 
+            body: @bio.inquiries_body%>
+</button>  

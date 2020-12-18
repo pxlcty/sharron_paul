@@ -1,21 +1,19 @@
 <div id="home_wrapper">
-<div id="home_container">
+  <div id="home_container">
     
     <div class="home_content" id="home_content_bio">
-    <div class="card" style="width: 24rem;">
-    <img class="card-img-top" src='<%=asset_path("bio_large.jpg")%>' alt="Card image cap">
-    <div class="card-body">
+      <div class="card" style="width: 24rem;">
+        <img class="card-img-top" src='<%=asset_path("bio_large.jpg")%>' alt="Card image cap">
+        <div class="card-body">
       
-      <p class="card-text">
-      <%= @bio.home_bio %>
-      </p>
-    </div>
-    <div class="card-body text-right">
-    <button type="button" class="btn btn-secondary" id="home-inquiry-button-text"><%= mail_to 'services@mccracken.nyc', "Booking Inquiries", 
-    subject: "Booking Inquiries", 
-    body: "Good day Ms Paul, I would be interested in a conversation of booking you for our upcoming event."%></button>  
-    </div>
-  </div>
+          <p class="card-text">
+          <%= @bio.home_bio %>
+          </p>
+        </div>
+        <div class="card-body text-right">
+          <%= render 'inquirie_button' %>
+        </div>
+      </div>
     </div>
     
     <div class="home_content" id="home_content_events">
