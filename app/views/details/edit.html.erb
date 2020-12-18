@@ -1,0 +1,93 @@
+<h2>Edit details page</h2>
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12">
+
+    <%= render 'shared/errors', obj: @detail %>
+    <%= form_with(model: @detail, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+
+        <div class="form-group row">
+            <%= f.label :headline, class: "col-2 col-form-label text-light" %>
+            <div class="col-10">
+                <%= f.text_field :headline, class: "form-control shadow rounded", placeholder: "Promo/Graphic url" %>
+            </div>
+        </div>
+
+        <!-- Homepage content -->
+
+        <div class="form-group row">
+            <%= f.label :home_bio, class: "col-2 col-form-label text-danger" %>
+            <div class="col-10">
+                <%= f.text_area :home_bio, rows: 10, class: "form-control shadow rounded", placeholder: "Homepage bio text. (Required)" %>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <%= f.label :home_image_url, class: "col-2 col-form-label text-light" %>
+            <div class="col-10">
+                <%= f.text_field :home_image_url, class: "form-control shadow rounded", placeholder: "URL to image for homepage" %>
+            </div>
+        </div>
+
+        <!-- About page content -->
+
+        <div class="form-group row">
+            <%= f.label :about_bio, class: "col-2 col-form-label text-danger" %>
+            <div class="col-10">
+                <%= f.text_area :about_bio, rows: 10, class: "form-control shadow rounded", placeholder: "If empty will pull in text from About home" %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <%= f.label :about_image_url, class: "col-2 col-form-label text-danger" %>
+            <div class="col-10">
+                <%= f.text_field :about_image_url, class: "form-control shadow rounded", placeholder: "URL to image for about page" %>
+            </div>
+        </div>
+
+        <!-- Inquiries -->
+
+        <div class="form-group row">
+            <%= f.label :inquiries_email, class: "col-2 col-form-label text-danger" %>
+            <div class="col-10">
+                <%= f.text_field :inquiries_email, class: "form-control shadow rounded", placeholder: "Email will to got what address?" %>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <%= f.label :inquiries_headline, class: "col-2 col-form-label text-danger" %>
+            <div class="col-10">
+                <%= f.text_field :inquiries_headline, class: "form-control shadow rounded", placeholder: "Email headline..." %>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <%= f.label :inquiries_body, class: "col-2 col-form-label text-danger" %>
+            <div class="col-10">
+                <%= f.text_field :inquiries_body, class: "form-control shadow rounded", placeholder: "Email Body...." %>
+            </div>
+        </div>
+
+        <!-- Contact page -->
+        <div class="form-group row">
+            <%= f.label :contact_email, class: "col-2 col-form-label text-danger" %>
+            <div class="col-10">
+                <%= f.text_field :contact_email, rows: 2, class: "form-control shadow rounded", placeholder: "Email for contact page form" %>
+            </div>
+        </div>
+
+        
+        <div class="form-group row justify-content-center">
+        <%= f.submit class: "btn btn-outline-light btn-lg" %>
+        </div>
+        
+        <% end %>
+        </div>
+        <div class="mb-3">
+            <%= link_to '[ Cancel and return to event listing ]', root_path, class: "text-info" %>
+        </div>
+
+    </div>
+
+</div>

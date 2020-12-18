@@ -7,12 +7,12 @@
     <div class="card-body">
       
       <p class="card-text">
-      <%= @bio.short %>
+      <%= @bio.home_bio %>
       </p>
     </div>
     <div class="card-body text-right">
     <button type="button" class="btn btn-secondary" id="home-inquiry-button-text"><%= mail_to 'services@mccracken.nyc', "Booking Inquiries", 
-    subject: "Booking Inguiries", 
+    subject: "Booking Inquiries", 
     body: "Good day Ms Paul, I would be interested in a conversation of booking you for our upcoming event."%></button>  
     </div>
   </div>

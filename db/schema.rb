@@ -10,13 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_13_210348) do
+ActiveRecord::Schema.define(version: 2020_12_18_055143) do
+
+  create_table "admins", force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "password_digest"
+  end
 
   create_table "details", force: :cascade do |t|
     t.string "headline"
-    t.text "full"
-    t.text "short"
-    t.string "email"
+    t.text "about_bio"
+    t.text "home_bio"
+    t.string "inquiries_email"
+    t.string "home_image_url"
+    t.string "about_image_url"
+    t.string "inquiries_headline"
+    t.text "inquiries_body"
+    t.string "contact_email"
   end
 
   create_table "events", force: :cascade do |t|
