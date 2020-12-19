@@ -7,16 +7,17 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-def time_rand from = 0.0, to = Time.now
-    Time.at(from + rand * (to.to_f - from.to_f))
+def time_rand from = 2021.12, to = Time.now
+    return Time.at(from - rand * (to.to_f - from.to_f))
   end
 
   event_list = [
-    ["My headline", 
+    ["Different headline", 
     "this is a very long description of text", 
     "The Local Pub", 
     "https://www.thewaystationbk.com/", 
-    time_rand, 
+    "image_url",
+    DateTime.new(2001,2,3,4,5,6),
     "this is a shorter description of words", 
     "https://www.ticketmaster.com/", 
     "https://g.page/unionhallny?share",
@@ -28,7 +29,7 @@ def time_rand from = 0.0, to = Time.now
 ]
 
 event_list.each do |headline, d_long, location_name, location_url, image_url, time, d_short, tickets_url, map_url, location_street, location_city, location_zip, location_state, location_country|
-    temp = Event.create(headline: headline, 
+    temp = Event.new(headline: headline, 
                 description_long: d_long, 
                 location_name: location_name, 
                 location_url: location_url, 
@@ -42,6 +43,8 @@ event_list.each do |headline, d_long, location_name, location_url, image_url, ti
                 location_state: location_state,
                 location_country: location_country
     )
+    #byebug
     temp.save
+    
 end
 
