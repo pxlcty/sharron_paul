@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_18_055143) do
+ActiveRecord::Schema.define(version: 2020_12_19_182812) do
+
+  create_table "admins", force: :cascade do |t|
+    t.string "admin_name"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "details", force: :cascade do |t|
     t.string "headline"
