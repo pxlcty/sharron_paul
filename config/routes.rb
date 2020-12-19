@@ -4,15 +4,14 @@ Rails.application.routes.draw do
 
   resources :events
   resources :details, only: [:edit, :update]
-
   resources :admins, only: [:show, :edit, :update]
   
-  #get 'admin-login', to 'sessions#new'
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
+
   # to build : 
   #resources :media
   #resources :admin, except: [:destroy] I think... (only one user admin)
   
-  #post 'admin-login', to 'sessions#create'
-  #delete 'admin-logout', to 'sessions#destroy'
-
 end
