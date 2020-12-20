@@ -1,45 +1,19 @@
-Create error catcher if no Details are filled in Database
-    'this site has no content'.
-    get name for app itself : Rails.application.class.parent_name
-
-Nav cleanup links
-
-Create Admin (user)
-    -user, email & password
-    -create sessions (login/logout)
 
 
-Create CMS pages for admin:
-    login => redirect to homepage?
-    logout => redirect to homepage
 
+events/show & index page remove edit/delete for non logged in.
+Edit only availabe to admin from show page, not index.
+
+Events/show : center headline(index)
+
+nav : 
+    change contact to email link.
+
+
+
+=============== later ===============================
+background should be static, not scrolling (issues on looong index pages)
+
+=============== VERY later ===============================
 create a date function for : st, nd, rd, th, etc...
-
-Nav - Admin features.
-
-background not scrolling (issues on index pages)
-
-
-singleton for single admin user?
-
-broken feature 
-
-db structure for events : 
-  create_table "events", force: :cascade do |t|
-    t.string "headline"
-    t.text "description_long"
-    t.string "location_name"
-    t.string "location_url"
-    t.string "image_url"
-    t.datetime "time"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text "description_short"
-    t.string "tickets_url"
-    t.string "map_url"
-    t.string "location_address"
-    t.string "location_street"
-    t.string "location_city"
-    t.string "location_zip"
-    t.string "location_state", default: "NY"
-    t.string "location_country", default: "USA"
+contact form
