@@ -1,7 +1,12 @@
 class DetailsController < ApplicationController
 
     def edit
-        @detail = Detail.first
+        if helpers.logged_in?
+            @detail = Detail.first 
+        else
+            flash[:alert] = "Credentials missing"
+            redirect_to root_path
+        end
     end
 
     def update

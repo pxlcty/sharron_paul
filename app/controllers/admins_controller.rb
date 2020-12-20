@@ -1,7 +1,21 @@
 class AdminsController < ApplicationController
 
+    def show
+        if helpers.logged_in?
+            @admin = Admin.first
+        else
+            flash[:alert] = "Need to be logged in admin to access that page BEEEE-AITCH!!"
+            redirect_to root_path
+        end
+    end
+
     def edit
-        @admin = Admin.first
+        if helpers.logged_in?
+            @admin = Admin.first
+        else
+            flash[:alert] = "Need to be logged in admin to access that page BEEEE-AITCH!!"
+            redirect_to root_path
+        end
     end
 
     def update
