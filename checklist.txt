@@ -1,11 +1,4 @@
 
-
-
-events/show & index page remove edit/delete for non logged in.
-Edit only availabe to admin from show page, not index.
-
-Events/show : center headline(index)
-
 nav : 
     change contact to email link.
 
