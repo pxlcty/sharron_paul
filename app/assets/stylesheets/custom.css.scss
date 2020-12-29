@@ -18,11 +18,12 @@
 html,
 body {
   height: 100%;
-
+  background-color: #343a40;
   background-image: asset-url('bg_main@3x.jpg');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: auto;
+  background-attachment: fixed;
 
 }
 
