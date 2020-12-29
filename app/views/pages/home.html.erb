@@ -6,9 +6,8 @@
         <img class="card-img-top" src='<%=asset_path("bio_large.jpg")%>' alt="Card image cap">
         <div class="card-body">
       
-          <p class="card-text">
-          <%= @bio.home_bio %>
-          </p>
+          
+          <%= simple_format(@bio.home_bio, class: 'card-text') %>
         </div>
         <div class="card-body text-right">
           <%= render 'inquirie_button' %>
