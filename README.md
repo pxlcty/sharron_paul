@@ -5,6 +5,9 @@ application up and running.
 
 Things you may want to cover:
 
+* 'accepted bugs':
+When creating new/update events. For Day - there's no validation for 29, 30 or 31st error catch.
+
 * Ruby version
 
     Ruby : 2.7.2

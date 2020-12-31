@@ -5,7 +5,9 @@ nav :
 
 
 =============== later ===============================
-background should be static, not scrolling (issues on looong index pages)
+Add Oscar's Date hack : 
+    go 1 month ahead -1 minute to see max days for the month asked for.
+    December is 31
 
 =============== VERY later ===============================
 create a date function for : st, nd, rd, th, etc...

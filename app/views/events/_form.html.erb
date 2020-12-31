@@ -3,6 +3,7 @@
         <div class="col-12">
 
     <%= render 'shared/errors', obj: @event %>
+    <%= @event.time %>
     <%= form_with(model: @event, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
 
         <div class="form-group row">
@@ -15,7 +16,7 @@
         <div class="form-group row">
             <%= f.label :headline, class: "col-2 col-form-label text-danger" %>
             <div class="col-10">
-                <%= f.text_field :headline, class: "form-control shadow rounded", placeholder: "Show headline (Required)" %>
+                <%= f.text_field :headline, class: "form-control shadow rounded", placeholder: "Show headline (Required)", required: true %>
             </div>
         </div>
 
@@ -29,20 +30,34 @@
         <div class="form-group row">
             <%= f.label :description_short, class: "col-2 col-form-label text-danger" %>
             <div class="col-10">
-                <%= f.text_area :description_short, rows: 2, class: "form-control shadow rounded", placeholder: "Short Description" %>
+                <%= f.text_area :description_short, rows: 2, class: "form-control shadow rounded", placeholder: "Short Description", required: true %>
             </div>
         </div>
+
+
         <div class="form-group row">
-            <%= f.label :time, class: "col-2 col-form-label text-danger" %>
-            <div class="col-10">
-                <%= f.text_field :time, class: "form-control shadow rounded", placeholder: "Year, month, date, 24hr, min, sec" %>
+            <%= f.label :event_year, class: "col-2 col-form-label text-danger" %>
+            <div class="col-2">
+                <%= f.text_field :event_year, class: "form-control shadow rounded", type: "number", min: "1950", max: "2099", maxlength: "4", value: @event.time.to_s[0, 4], placeholder: "Year", required: true %>
+            </div>
+            <div class="col-2">
+                <%= f.text_field :event_month, class: "form-control shadow rounded", type: "number", min: "1", max: "12", maxlength: "2", value: @event.time.to_s[5, 2], placeholder: "Month", required: true %>
+            </div>
+            <div class="col-2">
+                <%= f.text_field :event_day, class: "form-control shadow rounded", type: "number", min: "1", max: "31", maxlength: "2", value: @event.time.to_s[8, 2], placeholder: "Day", required: true %>
+            </div>
+            <div class="col-2">
+                <%= f.text_field :event_hour, class: "form-control shadow rounded", type: "number", min: "0", max: "23", maxlength: "2", value: @event.time.to_s[11, 2], placeholder: "24hrs", required: true %>
+            </div>
+            <div class="col-2">
+                <%= f.text_field :event_minute, class: "form-control shadow rounded", type: "number", min: "00", max: "59", maxlength: "2", value: @event.time.to_s[14, 2], placeholder: "Minutes", required: true %>
             </div>
         </div>
 
         <div class="form-group row">
             <%= f.label :location_name, class: "col-2 col-form-label text-danger" %>
             <div class="col-10">
-                <%= f.text_field :location_name, class: "form-control shadow rounded", placeholder: "Location name" %>
+                <%= f.text_field :location_name, class: "form-control shadow rounded", placeholder: "Location name", required: true %>
             </div>
         </div>
 

@@ -14,13 +14,34 @@ class EventsController < ApplicationController
     end
 
     def create
-        @event = Event.new(event_params_ww)
-        
-        if @event.save
-            flash[:notice] = "Event was created succesfully"
-            redirect_to @event
-        else 
-            render 'new'
+        broke = false #used as a flag if errors occur
+        clean_data = event_params_ww
+
+        #event_time = pull_datetime_field_from_form
+        begin
+            event_time = DateTime.new(
+                clean_data.delete(:event_year).to_i, 
+                clean_data.delete(:event_month).to_i, 
+                clean_data.delete(:event_day).to_i, 
+                clean_data.delete(:event_hour).to_i, 
+                clean_data.delete(:event_minute).to_i
+                )
+        rescue
+            flash.now[:warning] = "Something was wrong with your date format."
+            render 'new' 
+            broke = true
+        end
+        clean_data[:time] = event_time
+                
+        unless broke
+            #@event = Event.new(event_params_ww)
+            @event = Event.new(clean_data)            
+            if @event.save
+                flash[:notice] = "Event was created succesfully"
+                redirect_to @event
+            else 
+                render 'new'
+            end
         end
 
     end
@@ -30,12 +51,33 @@ class EventsController < ApplicationController
     end
 
     def update
+        broke = false #used as a flag if errors occur
         @event = Event.find(params[:id])
-        if @event.update(event_params_ww)
-            flash[:notice] = "Event was updated successfully"
-            redirect_to @event
-        else 
-            render 'edit'
+        clean_data = event_params_ww
+
+        begin
+            event_time = DateTime.new(
+                clean_data.delete(:event_year).to_i, 
+                clean_data.delete(:event_month).to_i, 
+                clean_data.delete(:event_day).to_i, 
+                clean_data.delete(:event_hour).to_i, 
+                clean_data.delete(:event_minute).to_i
+                )
+        rescue
+            flash.now[:warning] = "Something was wrong with your date format."
+            render 'edit' 
+            broke = true
+        end
+        clean_data[:time] = event_time
+
+       unless broke
+            if @event.update(clean_data)
+            #if @event.update(event_params_ww)
+                flash[:notice] = "Event was updated successfully"
+                redirect_to @event
+            else 
+                render 'edit'
+            end
         end
     end
 
@@ -52,6 +94,11 @@ class EventsController < ApplicationController
             :headline, 
             :description_long, 
             :description_short,
+            :event_year,
+            :event_month,
+            :event_day,
+            :event_hour,
+            :event_minute,
             :time,
             :tickets_url,
             :map_url,
@@ -63,6 +110,10 @@ class EventsController < ApplicationController
             :location_state,
             :location_country
         )
+    end
+
+    def create_datetime_object_from_view
+        
     end
 
 
