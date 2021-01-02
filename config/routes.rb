@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#home'
   get 'about', to: 'pages#about'
+  get 'archive', to: 'events#archive'
 
   resources :events
   resources :details, only: [:edit, :update]

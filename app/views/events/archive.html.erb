@@ -1,0 +1,19 @@
+<div class="container">
+<h1 class="text-white mt-4 text-center">SHOWS ARCHIVE PAGE</h1>
+
+
+<div class="flickr_pagination">
+    <%= will_paginate @events, :container => false %>
+  </div>
+
+
+<%= render 'event' %>
+
+<div class="flickr_pagination mb-4">
+    <%= will_paginate @events, :container => false %>
+  </div>
+
+
+
+
+</div>
