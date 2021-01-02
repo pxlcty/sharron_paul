@@ -1,6 +1,6 @@
 
 nav : 
-    change contact to email link.
+    change contact to email link if non given!!!
 
 
 

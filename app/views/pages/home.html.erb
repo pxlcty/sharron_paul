@@ -32,8 +32,10 @@
         <% else %>
           <%= event.location_name %>
         <% end %>
-      <br />
-          <%= event.time.to_formatted_s(:rfc822) %> <%= link_to 'details', event_path(event) %>
+      </div>
+      <div class="card-body">
+          <span ><%= site_datetime_writeout(event.time) %></span>
+          <span class="home__events--details"><%= link_to 'details >', event_path(event) %></span>
         </div>
       </div>
 
@@ -43,4 +45,5 @@
     </div>
 
 
-</div></div>
+  </div>
+</div>

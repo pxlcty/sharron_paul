@@ -12,7 +12,7 @@
                 <h5 class="card-title"><%= link_to event.headline, event_path(event.id), class: "text-success" %></h5>
                 <p class="card-text"><%= event.description_short %></p>
                 <p>Location: <%= event.location_name %></p>
-                <p>Time: <%= event.time.strftime("%A, %B %d %Y at %I:%M %P") %></p>
+                <p>Time: <%= site_datetime_writeout(event.time) %></p>
                 
             </div>
             <div class="card-footer text-muted">

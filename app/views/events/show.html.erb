@@ -55,8 +55,7 @@
 
 
 
-                <p><%= @event.time.strftime("%A, %B %d %Y at %I:%M %P") %></p>
-                <p>test : <%= @event.created_at.strftime("%A, %B %d %Y at %I:%M %P") %></p>
+                <p><%= site_datetime_writeout(@event.time) %></p>
                 <p>Line below just for checking</p>
                 <p><%= link_to 'tickets', @event.tickets_url unless @event.tickets_url.blank? %></p>
                 

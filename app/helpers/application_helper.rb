@@ -8,4 +8,9 @@ module ApplicationHelper
         !!correct_session_id?
     end
 
+    def site_datetime_writeout(pointInTime)
+        # Weekday, month day year at 12hr:Minutes AM/PM
+        pointInTime.strftime("%a, %b %d %Y at %I:%M %p")
+    end
+
 end
