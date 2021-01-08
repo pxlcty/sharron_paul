@@ -10,7 +10,8 @@ module ApplicationHelper
 
     def site_datetime_writeout(pointInTime)
         # Weekday, month day year at 12hr:Minutes AM/PM
-        pointInTime.strftime("%a, %b %d %Y at %I:%M %p")
+        # OBSERVE the .localtime. method chained in there!!!!
+        pointInTime.localtime.strftime("%a, %b %d %Y at %I:%M %p est")
     end
 
 end

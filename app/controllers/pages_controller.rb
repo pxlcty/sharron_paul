@@ -2,12 +2,20 @@ class PagesController < ApplicationController
 
     def home
         @bio = Detail.first
+        @alert = Alert.first
+        @apply_alert = false
+        if @alert.active && @alert.count_down > DateTime.now && Event.find_by(id: @alert.event_id)
+            @event_alert = Event.find_by(id: @alert.event_id)
+            @apply_alert = true
+        end
+
         #@events = Event.last(3)
         #@events = Event.order(time: :asc).first(3)
         @events = Event.where('time > ?', Date.today).order(time: :asc).first(3)
         #@events = Event.where(time: Time.now.midnight - 15.day).order(time: :asc).first(3)
         #now_time = DateTime.now
         #@events = Event.where(:time > :now_time).first(3)
+        
     end
 
     def about

@@ -23,9 +23,25 @@ class EventsController < ApplicationController
 
     def create
         broke = false #used as a flag if errors occur
+        alerting = false
+        ui_message = ""
+        @alert = Alert.last(1)
         clean_data = event_params_ww
 
-        #event_time = pull_datetime_field_from_form
+        if clean_data[:alert_active] == "0"
+            clean_data.delete(:alert_active)
+            clean_data.delete(:alert_time)
+        else
+            alerting = true
+            #add or remove hours to DateTime with +/- (float-number / 24) 
+            add_time = (clean_data.delete(:alert_time).to_f) / 24      
+            datetime_from_now = DateTime.now + add_time
+            clean_data.delete(:alert_active)
+            @alert[0][:count_down] = datetime_from_now
+            @alert[0][:active] = true;            
+            ui_message = "Alert Need to be updated."
+        end
+
         begin
             event_time = DateTime.new(
                 clean_data.delete(:event_year).to_i, 
@@ -43,9 +59,17 @@ class EventsController < ApplicationController
                 
         unless broke
             #@event = Event.new(event_params_ww)
-            @event = Event.new(clean_data)            
+            @event = Event.new(clean_data)         
             if @event.save
-                flash[:notice] = "Event was created succesfully"
+                ui_message << " Event was created succesfully"
+                if alerting
+                    @alert[0][:event_id] = @event.id
+                    if @alert[0].save
+                        ui_message << " Alert was updated."
+                    end
+                end
+
+                flash[:notice] = ui_message
                 redirect_to @event
             else 
                 render 'new'
@@ -60,9 +84,31 @@ class EventsController < ApplicationController
 
     def update
         broke = false #used as a flag if errors occur
+        alerting = false
+        ui_message = ""
         @event = Event.find(params[:id])
+        @alert = Alert.last(1)
+        
         clean_data = event_params_ww
+        if clean_data[:alert_active] == "0"
+            if(@alert[0].event_id == @event.id)
+                @alert[0][:active] = false;
+                ui_message = "Alert to be removed."
+            end
+            clean_data.delete(:alert_active)
+            clean_data.delete(:alert_time)            
+        else
+            alerting = true
+            add_time = (clean_data.delete(:alert_time).to_f) / 24            
+            datetime_from_now = DateTime.now + add_time
+            clean_data.delete(:alert_active)
+            @alert[0][:event_id] = @event.id
+            @alert[0][:count_down] = datetime_from_now
+            @alert[0][:active] = true;            
+            ui_message = "Alert To be activated."
+        end
 
+        
         begin
             event_time = DateTime.new(
                 clean_data.delete(:event_year).to_i, 
@@ -80,9 +126,16 @@ class EventsController < ApplicationController
 
        unless broke
             if @event.update(clean_data)
+                
+                ui_message << " Event was updated successfully."
+                if @alert[0].save
+                    
+                    ui_message << " Alert status was updated."
+                end
+            #if @event.update(clean_data)
             #if @event.update(event_params_ww)
-                flash[:notice] = "Event was updated successfully"
-                redirect_to @event
+                flash[:notice] = ui_message
+                redirect_to @event 
             else 
                 render 'edit'
             end
@@ -98,6 +151,7 @@ class EventsController < ApplicationController
     private
     def event_params_ww
         params.require(:event).permit(
+            :id,
             :image_url,
             :headline, 
             :description_long, 
@@ -116,13 +170,12 @@ class EventsController < ApplicationController
             :location_city,
             :location_zip,
             :location_state,
-            :location_country
+            :location_country,
+            :alert_active,
+            :alert_time
         )
     end
 
-    def create_datetime_object_from_view
-        
-    end
 
 
 end
