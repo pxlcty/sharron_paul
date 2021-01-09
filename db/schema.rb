@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_02_211033) do
+ActiveRecord::Schema.define(version: 2021_01_09_080636) do
 
   create_table "admins", force: :cascade do |t|
     t.string "admin_name"
@@ -56,6 +56,26 @@ ActiveRecord::Schema.define(version: 2021_01_02_211033) do
     t.string "location_zip"
     t.string "location_state", default: "NY"
     t.string "location_country", default: "USA"
+  end
+
+  create_table "media_categories", force: :cascade do |t|
+    t.string "name"
+    t.integer "points"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "media_links", force: :cascade do |t|
+    t.string "image_url"
+    t.string "headline"
+    t.integer "year"
+    t.text "description"
+    t.string "description_link"
+    t.string "media_link"
+    t.integer "points"
+    t.string "media_category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
