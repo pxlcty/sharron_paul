@@ -1,0 +1,23 @@
+<div class="container">
+    <% @media_categories.each do |category| %>
+        <div class="row justify-content-md-center">
+            <div class="col-8 mt-4">
+                <div class="card text-center shadow mb-5 bg-white rounded">
+                    <div class="card-body">
+                        <p class="card-text">
+                        <%= link_to category.name, edit_media_category_path(category) %>
+                         Rewards with: <%= category.points %> points
+                            <%= link_to 'delete', media_category_path(category), method: :delete, data: { confirm: "Are you sure?" }, class: 'close' %>
+                   
+                         </p>                
+                    </div>
+                    <div class="card-footer text-muted">
+                        <small>Created <%= time_ago_in_words(category.created_at) %> ago, 
+                        edited <%= time_ago_in_words(category.updated_at) %> ago </small>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>

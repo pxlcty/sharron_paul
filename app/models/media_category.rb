@@ -1,0 +1,3 @@
+class MediaCategory < ApplicationRecord
+    
+end
