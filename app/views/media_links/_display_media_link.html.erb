@@ -1,0 +1,50 @@
+<div class="container">
+    <% @media_links.each do |media_link| %>
+        <div class="row justify-content-md-center">
+            <div class="col-8 mt-4">
+                <div class="card text-center shadow mb-5 bg-white rounded">
+
+                    <% unless media_link.image_url.blank? %>
+                        <div class="card-header font-italic">
+                            <%= image_tag media_link.image_url %>
+                        </div>
+                    <% end %>
+                    <div class="card-header">
+                        <%= media_link.headline %>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text text-left">
+                            <% unless media_link.description.blank?%>
+                                <%= simple_format(media_link.description) %>
+                            <% end %>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text text-left">
+                            Short media link : <%= link_to media_link.description_link, media_link.media_link, target: :_blank %>
+                        </div>
+                    </div>
+                        <div class="card-body">
+                        <p class="card-text">
+                            <%= link_to 'edit', edit_media_link_path(media_link), class: 'close', id: 'edit-float-left' %>
+                            <%= link_to 'delete', media_link_path(media_link), method: :delete, data: { confirm: "Are you sure?" }, class: 'close' %>
+                         </p>                
+                    </div>
+                    <div class="card-body">
+                        <% category_info = @categories.find_by id: media_link.media_category_id.to_i %>
+    
+                        <small>Year: <%= media_link.year %>. 
+                        Category: <%= category_info.name %> (<%= category_info.points %>pts), 
+                        <%= media_link.points %> individual points, totals : <%= category_info.points + media_link.points %>
+                        </small>
+                    </div>
+
+                    <div class="card-footer text-muted">
+                        <small>Created <%= time_ago_in_words(media_link.created_at) %> ago, 
+                        edited <%= time_ago_in_words(media_link.updated_at) %> ago </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>

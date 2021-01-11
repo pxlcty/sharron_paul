@@ -22,6 +22,28 @@ class PagesController < ApplicationController
         @bio = Detail.first
     end
 
+    def media
+        categories = MediaCategory.all
+        @media_links = MediaLink.all
+        @ranked_media = media_priority_list(@media_links, categories)
+        #byebug
+    end
+
+    private
+        def media_priority_list (media_links, categories)
+            display_list = []
+            media_links.each do |unit| 
+                cat_id = categories.find unit.media_category_id.to_i
+                media = [unit.id, cat_id.name, (unit.points + cat_id.points), unit.points, cat_id.points, "media_link"]
+                display_list.push(media)
+            end
+#            byebug
+            prio_list = display_list.sort { |a, b| b[2] <=> a[2] }
+            #byebug
+            prio_list
+        end
+
+
 end
 
 # Comment.where(:created_at => @selected_date.beginning_of_day..@selected_date.end_of_day)
