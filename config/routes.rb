@@ -15,8 +15,10 @@ Rails.application.routes.draw do
   resources :media_categories
   resources :media_links
 
-  # to build : 
-  #resources :media
-  #resources :admin, except: [:destroy] I think... (only one user admin)
-  
+  resources :media_collections do
+    resources :seasons do
+      resources :episodes
+    end
+  end
+    
 end

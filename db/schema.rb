@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_09_080636) do
+ActiveRecord::Schema.define(version: 2021_01_11_072737) do
 
   create_table "admins", force: :cascade do |t|
     t.string "admin_name"
@@ -36,6 +36,18 @@ ActiveRecord::Schema.define(version: 2021_01_09_080636) do
     t.string "inquiries_headline"
     t.text "inquiries_body"
     t.string "contact_email"
+  end
+
+  create_table "episodes", force: :cascade do |t|
+    t.date "publication_date"
+    t.text "description"
+    t.string "description_link"
+    t.string "media_link"
+    t.integer "season_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "episode_name"
+    t.integer "episode_number"
   end
 
   create_table "events", force: :cascade do |t|
@@ -65,6 +77,17 @@ ActiveRecord::Schema.define(version: 2021_01_09_080636) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "media_collections", force: :cascade do |t|
+    t.string "image_url"
+    t.string "headline"
+    t.integer "year"
+    t.text "description"
+    t.integer "points"
+    t.integer "media_category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "media_links", force: :cascade do |t|
     t.string "image_url"
     t.string "headline"
@@ -76,6 +99,16 @@ ActiveRecord::Schema.define(version: 2021_01_09_080636) do
     t.string "media_category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "seasons", force: :cascade do |t|
+    t.integer "season"
+    t.integer "year"
+    t.text "description"
+    t.integer "media_collection_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "season_number"
   end
 
 end

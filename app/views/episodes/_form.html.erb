@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12">
+
+    
+        
+    <%= form_with(model: [@media_collection, @season, @episode], class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+
+        <div class="form-group row">
+            <%= f.label :episode_name, class: "col-1 col-form-label text-light" %>
+            <div class="col-10">
+                <%= f.text_field :episode_name, source: @episode.episode_number, class: "form-control shadow rounded", type: "text", placeholder: "Episode name",  required: false %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <%= f.label :episode_number, class: "col-1 col-form-label text-light" %>
+            <div class="col-10">
+                <%= f.text_field :episode_number, source: @episode.episode_number, class: "form-control shadow rounded", type: "number", min: "1", placeholder: "Episode #",  required: true %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <%= f.label :description, class: "col-1 col-form-label text-light" %>
+            <div class="col-10">
+                <%= f.text_area :description, class: "form-control shadow rounded", placeholder: "Description", required: false %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <%= f.label :description_link, class: "col-1 col-form-label text-light" %>
+            <div class="col-10">
+                <%= f.text_area :description_link, class: "form-control shadow rounded", placeholder: "text for link", required: true %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <%= f.label :media_link, class: "col-1 col-form-label text-danger" %>
+            <div class="col-10">
+                <%= f.text_area :media_link, class: "form-control shadow rounded", placeholder: "url itself", required: true %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <%= f.label 'Pub date', class: "col-2 col-form-label text-light" %>
+            <%= f.label 'Year', class: "col-1 col-form-label text-light" %>
+            <div class="col-2">
+                <%= f.text_field :episode_year, class: "form-control shadow rounded", type: "number", min: "1950", max: "2099", maxlength: "4", value: @episode.publication_date.to_s[0, 4], placeholder: "Year", required: true %>
+            </div>
+            <%= f.label 'Month', class: "col-1 col-form-label text-light" %>
+            <div class="col-2">
+                <%= f.text_field :episode_month, class: "form-control shadow rounded", type: "number", min: "1", max: "12", maxlength: "2", value: @episode.publication_date.to_s[5, 2], placeholder: "Month", required: true %>
+            </div>
+            <%= f.label 'Day', class: "col-1 col-form-label text-light" %>
+            <div class="col-2">
+                <%= f.text_field :episode_day, class: "form-control shadow rounded", type: "number", min: "1", max: "31", maxlength: "2", value: @episode.publication_date.to_s[8, 2], placeholder: "Day", required: true %>
+            </div>
+        </div>
+
+
+
+
+        
+        <%= f.hidden_field :season_id, source: @episode.season_id %>
+
+        <div class="form-group row justify-content-center">
+        <%= f.submit class: "btn btn-outline-light btn-lg" %>
+        </div>
+
+        
+        <% end %>
+        </div>
+        <div class="mb-3">
+            <%= link_to '[ Cancel and return to media-collection listing ]', media_collections_path, class: "text-info" %>
+        </div>
+
+    </div>
+
+</div>

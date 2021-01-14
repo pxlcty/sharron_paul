@@ -1,0 +1,99 @@
+<div class="container">
+    <% @media_collections.each do |media_collection| %>
+        <div class="row justify-content-md-center">
+            <div class="col-8 mt-4">
+                <div class="card text-center shadow mb-5 bg-white rounded">
+
+                    <div class="card-body">
+                        <p class="card-text">
+                            <%= link_to 'edit', edit_media_collection_path(media_collection), class: 'close', id: 'edit-float-left' %>
+                            <%= link_to 'delete', media_collection_path(media_collection), method: :delete, data: { confirm: "Are you sure?" }, class: 'close' %>
+                        </p>                
+                    </div>
+
+                    <% unless media_collection.image_url.blank? %>
+                        <div class="card-header font-italic">
+                            <%= image_tag media_collection.image_url %>
+                        </div>
+                    <% end %>
+                    <div class="card-header">
+                        <%= media_collection.headline %>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text text-left">
+                            <% unless media_collection.description.blank?%>
+                                <%= simple_format(media_collection.description) %>
+                            <% end %>
+                        </div>
+                    </div>
+
+                    <!-- Season ::  -->
+                    
+                    <% season = @seasons.where media_collection_id: media_collection.id %>
+                    <% unless season == nil %>
+                    <% season.each do |season| %>
+                    <div class="card-body">
+                        <div class="card-text text-left">
+                            <%= link_to edit_media_collection_season_path(media_collection, season) do %>
+                                <p>
+                                    <strong>Season #<%= season.season_number %><% unless season.year.blank? %>,</strong> (<%= season.year %><% end %>) 
+                                    <%= link_to 'delete>', media_collection_season_path(media_collection, season), method: :delete, data: { confirm: "Are you sure?" } %>
+                                </p>
+                            <% end %>
+                            <% unless season.description.blank? %>
+                                <p><%= season.description %></p>
+                            <% end %>
+                            
+                            <!-- Episodes :: -->
+                            <% episode  = @episodes.where season_id: season.id %>
+                            <% unless season == nil %>
+                                <div class="ml-3">
+                                <% episode.each do |episode| %>
+                                    <p><%= ('#' + episode.episode_number.to_s) unless episode.episode_number.nil? %> <%= episode.episode_name unless episode.episode_name.empty? %></p>
+                                    <p><%= ('publication date: ' + episode.publication_date.to_s) unless episode.episode_number.blank? %></p>
+                                    <p><%= episode.description unless episode.description.empty? %></p>
+                                    <p><%= link_to episode.description_link, episode.media_link, target: :_blank %></p>
+                                    <p><%= link_to 'edit>', edit_media_collection_season_episode_path(media_collection, season, episode) %>
+                                    <%= link_to 'delete>', media_collection_season_episode_path(media_collection, season, episode), method: :delete, data: { confirm: "Are you sure?" } %></p>
+                                    
+                                    
+
+                                <% end %>
+                                </div>
+                            <% end %>
+
+                            <%= link_to 'Add episode', new_media_collection_season_episode_path(media_collection, season) %>
+                        </div>
+                    </div>
+                    <% end %>
+                    <% end %>
+
+
+                    <div class="card-body">
+                        <% category_info = @categories.find_by id: media_collection.media_category_id %>
+    
+                        <small>Year: <%= media_collection.year %>. 
+                        Category: <%= category_info.name %> (<%= category_info.points %>pts), 
+                        <%= media_collection.points %> individual points, totals : <%= category_info.points + media_collection.points %>
+                        </small>
+                    </div>
+
+                    <div class="card-body"> 
+                        
+                    <hr>
+                    
+
+                        <%= link_to 'create season', new_media_collection_season_path(media_collection) %>
+                    </div>
+
+                    <div class="card-footer text-muted">
+                        <small>Created <%= time_ago_in_words(media_collection.created_at) %> ago, 
+                        edited <%= time_ago_in_words(media_collection.updated_at) %> ago </small>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>
