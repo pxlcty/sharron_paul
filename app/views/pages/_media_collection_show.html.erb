@@ -1,0 +1,80 @@
+<% if logged_in? %>
+<h2 class="text-center mt-4 text-white">
+    MEDIA COLLECTION
+</h2>
+<% end %>
+
+<% current_media_iteration = @media_collections.find(media[0]) %>
+
+<div class="row justify-content-md-center">
+    <div class="col-8 mt-4">
+        <div class="card text-center shadow mb-5 bg-white rounded">
+
+            <% unless current_media_iteration.image_url.blank? %>
+                <div class="card-header font-italic">
+                    <%= image_tag current_media_iteration.image_url %>
+                </div>
+            <% end %>
+            <div class="card-header">
+                <%= current_media_iteration.headline %>
+            </div>
+            <div class="card-body">
+                <div class="card-text text-left">
+                    <% unless current_media_iteration.description.blank?%>
+                        <%= simple_format(current_media_iteration.description) %>
+                    <% end %>
+                </div>
+            </div>
+
+            <!-- Season ::  -->
+            
+            <% season = @seasons.where media_collection_id: current_media_iteration.id %>
+            <% unless season == nil %>
+            <% season.each do |season| %>
+            <div class="card-body">
+                <div class="card-text text-left">
+                    
+                        <p>
+                            <strong>Season #<%= season.season_number %><% unless season.year.blank? %>,</strong> (<%= season.year %><% end %>) 
+                            
+                        </p>
+                    
+                    <% unless season.description.blank? %>
+                        <p><%= season.description %></p>
+                    <% end %>
+                    
+                    <!-- Episodes :: -->
+                    <% episode  = @episodes.where season_id: season.id %>
+                    <% unless season == nil %>
+                        <div class="ml-3">
+                        <% episode.each do |episode| %>
+                            <p><%= ('#' + episode.episode_number.to_s) unless episode.episode_number.nil? %> <%= episode.episode_name unless episode.episode_name.empty? %></p>
+                            <p><%= ('publication date: ' + episode.publication_date.to_s) unless episode.episode_number.blank? %></p>
+                            <p><%= episode.description unless episode.description.empty? %></p>
+                            <p><%= link_to episode.description_link, episode.media_link, target: :_blank %></p>
+                        <% end %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+            <% end %>
+            <% end %>
+
+
+            <div class="card-body">
+                <small>Year: <%= current_media_iteration.year %>. 
+                Category: <%= media[1] %> (<%= media[4] %>pts), 
+                <%= media[3] %> individual points, totals : <%= media[2] %>
+                </small>
+            </div>
+
+
+            <div class="card-footer text-muted">
+                <small>Created <%= time_ago_in_words(current_media_iteration.created_at) %> ago, 
+                edited <%= time_ago_in_words(current_media_iteration.updated_at) %> ago </small>
+            </div>
+
+
+        </div>
+    </div>
+</div>

@@ -25,22 +25,28 @@ class PagesController < ApplicationController
     def media
         categories = MediaCategory.all
         @media_links = MediaLink.all
-        @ranked_media = media_priority_list(@media_links, categories)
+        @media_collections = MediaCollection.all
+        @ranked_media = media_priority_list(@media_links, @media_collections, categories)
+        @seasons = Season.all
+        @episodes = Episode.all
         #byebug
     end
 
     private
-        def media_priority_list (media_links, categories)
+        def media_priority_list (media_links, media_collections, categories)
             display_list = []
-            media_links.each do |unit| 
-                cat_id = categories.find unit.media_category_id.to_i
-                media = [unit.id, cat_id.name, (unit.points + cat_id.points), unit.points, cat_id.points, "media_link"]
-                display_list.push(media)
-            end
-#            byebug
+            build_priority_list(display_list, media_links, categories)
+            build_priority_list(display_list, media_collections, categories)
             prio_list = display_list.sort { |a, b| b[2] <=> a[2] }
-            #byebug
             prio_list
+        end
+
+        def build_priority_list (list, collection, categories)
+            collection.each do |unit| 
+                cat_id = categories.find unit.media_category_id.to_i
+                media = [unit.id, cat_id.name, (unit.points + cat_id.points), unit.points, cat_id.points, unit.class.to_s]
+                list.push(media)
+            end
         end
 
 
