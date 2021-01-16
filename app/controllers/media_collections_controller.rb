@@ -1,6 +1,15 @@
 class MediaCollectionsController < ApplicationController
 
-    before_action :credentials_check
+    before_action :credentials_check, except: [:show]
+
+    def show
+        @media_collection = MediaCollection.find(params[:id])
+        @category = MediaCategory.find(@media_collection.media_category_id)
+        @seasons = Season.where(media_collection_id: @media_collection.id)
+        season_ids_arr = @seasons.map(&:id)
+        @episodes = Episode.where(season_id: season_ids_arr)
+        #byebug
+    end
 
     def index
         @categories = MediaCategory.all

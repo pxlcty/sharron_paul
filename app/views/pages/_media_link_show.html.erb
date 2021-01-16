@@ -4,17 +4,16 @@ MEDIA LINK ::
 </h2>
 <% end %>
 
-<% media_link = @media_links.find_by id: media[0] %>
 
 <div class="row justify-content-md-center">
-    <div class="col-8 mt-4">
+    <div class="col-4 mt-4">
         <div class="card text-center shadow mb-5 bg-white rounded">
 
+<% media_link = @media_links.find_by id: media[0] %>
             <% unless media_link.image_url.blank? %>
-                <div class="card-header font-italic">
-                    <%= image_tag media_link.image_url %>
-                </div>
+                <%= image_tag media_link.image_url, class: 'card-img-top' %>
             <% end %>
+
             <div class="card-header">
                 <%= media_link.headline %>
             </div>
@@ -30,17 +29,14 @@ MEDIA LINK ::
                     Short media link : <%= link_to media_link.description_link, media_link.media_link, target: :_blank %>
                 </div>
             </div>
-            <div class="card-body">
-                <small>Year: <%= media_link.year %>. 
-                Category: <%= media[1] %><% if logged_in? %>  (<%= media[4] %>pts), 
-                <%= media_link.points %> individual points, totals : <%= media[4] + media_link.points %><% end %>
+
+            <div class="card-footer text-muted">
+                <small><%= media[1] %> (<%= media_link.year %>)
+                <% if logged_in? %> (<%= media[4] %>pts), 
+                <%= media[3] %> individual points, totals : <%= media[2] %><% end %>
                 </small>
             </div>
 
-            <div class="card-footer text-muted">
-                <small>Created <%= time_ago_in_words(media_link.created_at) %> ago, 
-                edited <%= time_ago_in_words(media_link.updated_at) %> ago </small>
             </div>
-        </div>
     </div>
 </div>

@@ -94,6 +94,11 @@ body {
   float: left;
 }
 
+.card-img-top {
+  width: 100%;
+  height: 20vh;
+  object-fit: cover; /*contain;*/
+  }
 
 /* pagination module : */ 
   
