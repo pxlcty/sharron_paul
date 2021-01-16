@@ -19,9 +19,9 @@
         <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
         <div class="card-body text-center">
         <p class="card-text black-link-text" >- special show just added -</p>
-          <h3 class="card-title black-link-text"><%= link_to @event_alert.headline, event_path(@alert.event_id) %></h3>
+          <h3 class="card-title black-link-text"><%= link_to @event_alert.headline, event_path(@news_alert.event_id) %></h3>
           <% if logged_in? %>
-            <p class="card-text black-link-text">Display until :  <%= site_datetime_writeout(@alert.count_down) %></p>
+            <p class="card-text black-link-text">Display until :  <%= site_datetime_writeout(@news_alert.count_down) %></p>
           <% end %>
         </div>
       </div>

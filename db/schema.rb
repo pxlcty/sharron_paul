@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_16_010525) do
+ActiveRecord::Schema.define(version: 2021_01_16_190700) do
 
   create_table "admins", force: :cascade do |t|
     t.string "admin_name"
@@ -18,12 +18,6 @@ ActiveRecord::Schema.define(version: 2021_01_16_010525) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
-  end
-
-  create_table "alerts", force: :cascade do |t|
-    t.integer "event_id"
-    t.datetime "count_down"
-    t.boolean "active"
   end
 
   create_table "details", force: :cascade do |t|
@@ -99,6 +93,12 @@ ActiveRecord::Schema.define(version: 2021_01_16_010525) do
     t.integer "media_category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "news_alerts", force: :cascade do |t|
+    t.integer "event_id"
+    t.datetime "count_down"
+    t.boolean "active"
   end
 
   create_table "seasons", force: :cascade do |t|

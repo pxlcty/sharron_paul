@@ -2,10 +2,10 @@ class PagesController < ApplicationController
 
     def home
         @bio = Detail.first
-        @alert = Alert.first
+        @news_alert = NewsAlert.first
         @apply_alert = false
-        if @alert.active && @alert.count_down > DateTime.now && Event.find_by(id: @alert.event_id)
-            @event_alert = Event.find_by(id: @alert.event_id)
+        if @news_alert.active && @news_alert.count_down > DateTime.now && Event.find_by(id: @news_alert.event_id)
+            @event_alert = Event.find_by(id: @news_alert.event_id)
             @apply_alert = true
         end
 

@@ -18,22 +18,22 @@ class EventsController < ApplicationController
 
     def create
         broke = false #used as a flag if errors occur
-        alerting = false
+        breaking_news_alert = false
         ui_message = ""
-        @alert = Alert.last(1)
+        @news_alert = NewsAlert.last(1)
         clean_data = event_params_ww
 
         if clean_data[:alert_active] == "0"
             clean_data.delete(:alert_active)
             clean_data.delete(:alert_time)
         else
-            alerting = true
+            breaking_news_alert = true
             #add or remove hours to DateTime with +/- (float-number / 24) 
             add_time = (clean_data.delete(:alert_time).to_f) / 24      
             datetime_from_now = DateTime.now + add_time
             clean_data.delete(:alert_active)
-            @alert[0][:count_down] = datetime_from_now
-            @alert[0][:active] = true;            
+            @news_alert[0][:count_down] = datetime_from_now
+            @news_alert[0][:active] = true;            
             ui_message = "Alert Need to be updated."
         end
 
@@ -57,9 +57,9 @@ class EventsController < ApplicationController
             @event = Event.new(clean_data)         
             if @event.save
                 ui_message << " Event was created succesfully"
-                if alerting
-                    @alert[0][:event_id] = @event.id
-                    if @alert[0].save
+                if breaking_news_alert
+                    @news_alert[0][:event_id] = @event.id
+                    if @news_alert[0].save
                         ui_message << " Alert was updated."
                     end
                 end
@@ -79,27 +79,27 @@ class EventsController < ApplicationController
 
     def update
         broke = false #used as a flag if errors occur
-        alerting = false
+        breaking_news_alert = false
         ui_message = ""
         @event = Event.find(params[:id])
-        @alert = Alert.last(1)
+        @news_alert = NewsAlert.last(1)
         
         clean_data = event_params_ww
         if clean_data[:alert_active] == "0"
-            if(@alert[0].event_id == @event.id)
-                @alert[0][:active] = false;
+            if(@news_alert[0].event_id == @event.id)
+                @news_alert[0][:active] = false;
                 ui_message = "Alert to be removed."
             end
             clean_data.delete(:alert_active)
             clean_data.delete(:alert_time)            
         else
-            alerting = true
+            breaking_news_alert = true
             add_time = (clean_data.delete(:alert_time).to_f) / 24            
             datetime_from_now = DateTime.now + add_time
             clean_data.delete(:alert_active)
-            @alert[0][:event_id] = @event.id
-            @alert[0][:count_down] = datetime_from_now
-            @alert[0][:active] = true;            
+            @news_alert[0][:event_id] = @event.id
+            @news_alert[0][:count_down] = datetime_from_now
+            @news_alert[0][:active] = true;            
             ui_message = "Alert To be activated."
         end
 
@@ -123,7 +123,7 @@ class EventsController < ApplicationController
             if @event.update(clean_data)
                 
                 ui_message << " Event was updated successfully."
-                if @alert[0].save
+                if @news_alert[0].save
                     
                     ui_message << " Alert status was updated."
                 end
