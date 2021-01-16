@@ -1,5 +1,7 @@
 <div class="container">
+<div class="media__units-container">
     <% @ranked_media.each do |media| %>
+      
         <% if media[5] == 'MediaCollection' %>
           <%= render 'media_collection_show', media: media %>
           
@@ -7,4 +9,5 @@
           <%= render 'media_link_show', media: media %>
         <% end %>
     <% end %>
+    </div>
 </div>

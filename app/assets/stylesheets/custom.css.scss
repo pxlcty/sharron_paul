@@ -96,9 +96,16 @@ body {
 
 .card-img-top {
   width: 100%;
-  height: 20vh;
+  max-height: 10rem;
   object-fit: cover; /*contain;*/
-  }
+}
+
+.media__units-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
 
 /* pagination module : */ 
   
