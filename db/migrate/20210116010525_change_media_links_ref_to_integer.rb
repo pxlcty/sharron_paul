@@ -1,5 +1,9 @@
 class ChangeMediaLinksRefToInteger < ActiveRecord::Migration[6.0]
-  def change
-    change_column :media_links, :media_category_id, :integer
+  def up
+    change_column :orders, :media_links, "integer USING NULLIF(media_links, '')::int"
+  end
+
+  def down
+    change_column :orders, :media_links, :string
   end
 end
