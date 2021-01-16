@@ -1,5 +1,7 @@
 class MediaCategoriesController < ApplicationController
 
+    before_action :credentials_check
+
     def index
         @media_categories = MediaCategory.all
     end
@@ -43,4 +45,11 @@ class MediaCategoriesController < ApplicationController
         params.require(:media_category).permit(:name, :points)
     end
 
+    def credentials_check
+        unless helpers.logged_in?
+            flash[:alert] = "Credentials missing"
+            redirect_to root_path
+        end
+    end
+    
 end

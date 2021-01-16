@@ -1,5 +1,7 @@
 class SeasonsController < ApplicationController
 
+    before_action :credentials_check
+
     def new
         @season = Season.new
         @season.media_collection_id = params[:media_collection_id].to_i
@@ -49,5 +51,13 @@ class SeasonsController < ApplicationController
             :media_collection_id
         )
     end
+
+    def credentials_check
+        unless helpers.logged_in?
+            flash[:alert] = "Credentials missing"
+            redirect_to root_path
+        end
+    end
+
     
 end

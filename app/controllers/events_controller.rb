@@ -1,16 +1,11 @@
 class EventsController < ApplicationController
 
     def index
-        #@events = Event.paginate(page: params[:page], per_page: 5)
-        #@events = Event.all.paginate(:order => "created_at DESC",:page => params[:page],:per_page => 5)
-        #@events = Event.where('time > ?', Date.today).order(time: :asc).first(3)
-        # this only shows today and any future date : 
         @events = Event.where('time > ?', Date.today).order(time: :desc).paginate(page: params[:page], per_page: 5)
     end
 
     def archive
         @events = Event.where('time < ?', Date.today).order(time: :desc).paginate(page: params[:page], per_page: 5)
-        
     end
 
     def show

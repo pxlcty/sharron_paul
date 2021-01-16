@@ -27,16 +27,13 @@
             </div>
 
             <!-- Season ::  -->
-            
             <% season = @seasons.where media_collection_id: current_media_iteration.id %>
             <% unless season == nil %>
             <% season.each do |season| %>
             <div class="card-body">
                 <div class="card-text text-left">
-                    
                         <p>
                             <strong>Season #<%= season.season_number %><% unless season.year.blank? %>,</strong> (<%= season.year %><% end %>) 
-                            
                         </p>
                     
                     <% unless season.description.blank? %>

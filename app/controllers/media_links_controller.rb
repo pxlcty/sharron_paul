@@ -1,5 +1,7 @@
 class MediaLinksController < ApplicationController
 
+    before_action :credentials_check
+
     def index
         @categories = MediaCategory.all
         @media_links = MediaLink.all
@@ -49,6 +51,13 @@ class MediaLinksController < ApplicationController
             :points,
             :media_category_id
         )
+    end
+
+    def credentials_check
+        unless helpers.logged_in?
+            flash[:alert] = "Credentials missing"
+            redirect_to root_path
+        end
     end
 
 end

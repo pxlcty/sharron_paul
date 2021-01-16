@@ -1,5 +1,7 @@
 class MediaCollectionsController < ApplicationController
 
+    before_action :credentials_check
+
     def index
         @categories = MediaCategory.all
         @media_collections = MediaCollection.all
@@ -49,4 +51,12 @@ class MediaCollectionsController < ApplicationController
             :media_category_id
         )
     end
+
+    def credentials_check
+        unless helpers.logged_in?
+            flash[:alert] = "Credentials missing"
+            redirect_to root_path
+        end
+    end
+
 end

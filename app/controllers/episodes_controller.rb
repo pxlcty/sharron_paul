@@ -1,5 +1,7 @@
 class EpisodesController < ApplicationController
 
+    before_action :credentials_check
+
     def new
         @episode = Episode.new
         @episode.season_id = params[:season_id].to_i
@@ -70,6 +72,13 @@ class EpisodesController < ApplicationController
             :episode_day
 
         )
+    end
+
+    def credentials_check
+        unless helpers.logged_in?
+            flash[:alert] = "Credentials missing"
+            redirect_to root_path
+        end
     end
 
 end

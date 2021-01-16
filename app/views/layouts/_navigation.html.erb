@@ -44,9 +44,6 @@
     <%= mail_to "booksharronpaul@gmail.com", "Contact", 
             subject: "", 
             body: "", class: "nav-link"%>
-
-
-
   </li>
 
   <% if logged_in? %>
@@ -58,16 +55,16 @@
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <%= link_to 'New Event', new_event_path, class: "dropdown-item" %>
         <%= link_to 'Site Content', edit_detail_path(1), class: "dropdown-item" %>
-        
-        
+        <%= link_to 'Media Links', media_links_path, class: "dropdown-item" %>
+        <%= link_to 'Media Collections', media_collections_path, class: "dropdown-item" %>
+        <%= link_to 'Media Categories', media_categories_path, class: "dropdown-item" %>
       </div>
 
     <li class="nav-item active">
       <%= link_to 'Logout', logout_path, class: "nav-link", method: :delete %>  
     </li>
   <% end %>
-
-
+  
   </ul>
   <!--
   <form class="form-inline my-2 my-lg-0">
