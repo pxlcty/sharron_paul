@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_11_072737) do
+ActiveRecord::Schema.define(version: 2021_01_16_010525) do
 
   create_table "admins", force: :cascade do |t|
     t.string "admin_name"
@@ -96,13 +96,12 @@ ActiveRecord::Schema.define(version: 2021_01_11_072737) do
     t.string "description_link"
     t.string "media_link"
     t.integer "points"
-    t.string "media_category_id"
+    t.integer "media_category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "seasons", force: :cascade do |t|
-    t.integer "season"
     t.integer "year"
     t.text "description"
     t.integer "media_collection_id"

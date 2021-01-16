@@ -35,7 +35,7 @@ class EpisodesController < ApplicationController
     def edit
         @episode = Episode.find(params[:id])
         @season = Season.find(params[:season_id]) 
-        @media_collection = MediaCollection.find(params[:media_collection_id])        
+        @media_collection = MediaCollection.find(params[:media_collection_id])
     end
 
     def update

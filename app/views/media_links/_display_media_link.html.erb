@@ -31,7 +31,7 @@
                          </p>                
                     </div>
                     <div class="card-body">
-                        <% category_info = @categories.find_by id: media_link.media_category_id.to_i %>
+                        <% category_info = @categories.find_by id: media_link.media_category_id %>
     
                         <small>Year: <%= media_link.year %>. 
                         Category: <%= category_info.name %> (<%= category_info.points %>pts), 
