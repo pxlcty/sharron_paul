@@ -38,6 +38,12 @@ class MediaCollectionsController < ApplicationController
         end
     end
 
+    def destroy
+        @media_collection = MediaCollection.find(params[:id])
+        @media_collection.destroy
+        redirect_to media_collections_path
+    end
+
 
     private
     
