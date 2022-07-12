@@ -4,10 +4,10 @@ class PagesController < ApplicationController
         @bio = Detail.first
         @news_alert = NewsAlert.first
         @apply_alert = false
-        if @news_alert.active && @news_alert.count_down > DateTime.now && Event.find_by(id: @news_alert.event_id)
-            @event_alert = Event.find_by(id: @news_alert.event_id)
-            @apply_alert = true
-        end
+        # if @news_alert.active && @news_alert.count_down > DateTime.now && Event.find_by(id: @news_alert.event_id)
+        #     @event_alert = Event.find_by(id: @news_alert.event_id)
+        #     @apply_alert = true
+        # end
 
         #@events = Event.last(3)
         #@events = Event.order(time: :asc).first(3)
