@@ -2,21 +2,23 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_16_190700) do
+ActiveRecord::Schema[7.0].define(version: 2021_01_16_190700) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "admins", force: :cascade do |t|
     t.string "admin_name"
     t.string "email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "password_digest"
   end
 
@@ -38,8 +40,8 @@ ActiveRecord::Schema.define(version: 2021_01_16_190700) do
     t.string "description_link"
     t.string "media_link"
     t.integer "season_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "episode_name"
     t.integer "episode_number"
   end
@@ -50,9 +52,9 @@ ActiveRecord::Schema.define(version: 2021_01_16_190700) do
     t.string "location_name"
     t.string "location_url"
     t.string "image_url"
-    t.datetime "time"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "time", precision: nil
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.text "description_short"
     t.string "tickets_url"
     t.string "map_url"
@@ -67,8 +69,8 @@ ActiveRecord::Schema.define(version: 2021_01_16_190700) do
   create_table "media_categories", force: :cascade do |t|
     t.string "name"
     t.integer "points"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "media_collections", force: :cascade do |t|
@@ -78,8 +80,8 @@ ActiveRecord::Schema.define(version: 2021_01_16_190700) do
     t.text "description"
     t.integer "points"
     t.integer "media_category_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "media_links", force: :cascade do |t|
@@ -91,13 +93,13 @@ ActiveRecord::Schema.define(version: 2021_01_16_190700) do
     t.string "media_link"
     t.integer "points"
     t.integer "media_category_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "news_alerts", force: :cascade do |t|
     t.integer "event_id"
-    t.datetime "count_down"
+    t.datetime "count_down", precision: nil
     t.boolean "active"
   end
 
@@ -105,8 +107,8 @@ ActiveRecord::Schema.define(version: 2021_01_16_190700) do
     t.integer "year"
     t.text "description"
     t.integer "media_collection_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "season_number"
   end
 
