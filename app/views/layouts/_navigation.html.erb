@@ -1,76 +1,76 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+  <%= link_to 'Sharron Paul', root_path, class: "navbar-brand", id: "logo" %>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
 
-<%= link_to 'Sharron Paul', root_path, class: "navbar-brand", id: "logo" %>
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-</button>
+      <li class="nav-item active">
+        <%= link_to 'About', about_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item active">
+        <%= link_to 'Shows', events_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item active">
+        <%= link_to 'Media', media_path, class: "nav-link" %>
+      </li>
 
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
-  <ul class="navbar-nav mr-auto">
-
-    <li class="nav-item active">
-      <%= link_to 'About', about_path, class: "nav-link" %>
-    </li>
-    <li class="nav-item active">
-      <%= link_to 'Shows', events_path, class: "nav-link" %>
-    </li>
-    <li class="nav-item active">
-      <%= link_to 'Media', media_path, class: "nav-link" %>
-    </li>
-
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Projects
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Projects
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <%= link_to 'Cheap Date', 'https://cheapdatecomedy.com/', class: "dropdown-item", target: :_blank %>
+        <div class="dropdown-divider"></div>
+          <%= link_to 'The Shade Of It All', 'https://tsoiapodcast.tumblr.com/', class: "dropdown-item", target: :_blank %>
+          <%= link_to 'Girls Are Roommates', 'https://www.imdb.com/title/tt5220896/', class: "dropdown-item", target: :_blank %>
+      </div>
+      </li>
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Links
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <%= link_to 'Cheap Date', 'https://cheapdatecomedy.com/', class: "dropdown-item", target: :_blank %>
-      <div class="dropdown-divider"></div>
-        <%= link_to 'The Shade Of It All', 'https://tsoiapodcast.tumblr.com/', class: "dropdown-item", target: :_blank %>
-        <%= link_to 'Girls Are Roommates', 'https://www.imdb.com/title/tt5220896/', class: "dropdown-item", target: :_blank %>
+      <%= link_to 'IMDb', 'https://www.imdb.com/name/nm4521213/', class: "dropdown-item", target: :_blank %>
+      <%= link_to 'Twitter', 'https://twitter.com/Sharronica?s=20', class: "dropdown-item", target: :_blank %>
+      <%= link_to 'Facebook', 'https://www.facebook.com/sharronpaul', class: "dropdown-item", target: :_blank %>
     </div>
     </li>
-    <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Links
-    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <%= link_to 'IMDb', 'https://www.imdb.com/name/nm4521213/', class: "dropdown-item", target: :_blank %>
-    <%= link_to 'Twitter', 'https://twitter.com/Sharronica?s=20', class: "dropdown-item", target: :_blank %>
-    <%= link_to 'Facebook', 'https://www.facebook.com/sharronpaul', class: "dropdown-item", target: :_blank %>
+      <li class="nav-item active">
+
+      <%= mail_to "booksharronpaul@gmail.com", "Contact", 
+              subject: "", 
+              body: "", class: "nav-link"%>
+    </li>
+
+    <% if logged_in? %>
+      </li>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Admin Tools
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to 'New Event', new_event_path, class: "dropdown-item" %>
+          <%= link_to 'Site Content', edit_detail_path(1), class: "dropdown-item" %>
+          <%= link_to 'Media Links', media_links_path, class: "dropdown-item" %>
+          <%= link_to 'Media Collections', media_collections_path, class: "dropdown-item" %>
+          <%= link_to 'Media Categories', media_categories_path, class: "dropdown-item" %>
+        </div>
+
+      <li class="nav-item active">
+        <%= link_to 'Logout', logout_path, class: "nav-link", method: :delete %>  
+      </li>
+    <% end %>
+    
+    </ul>
+    <!--
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    -->
   </div>
-  </li>
-    <li class="nav-item active">
-
-    <%= mail_to "booksharronpaul@gmail.com", "Contact", 
-            subject: "", 
-            body: "", class: "nav-link"%>
-  </li>
-
-  <% if logged_in? %>
-    </li>
-      <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Admin Tools
-      </a>
-      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <%= link_to 'New Event', new_event_path, class: "dropdown-item" %>
-        <%= link_to 'Site Content', edit_detail_path(1), class: "dropdown-item" %>
-        <%= link_to 'Media Links', media_links_path, class: "dropdown-item" %>
-        <%= link_to 'Media Collections', media_collections_path, class: "dropdown-item" %>
-        <%= link_to 'Media Categories', media_categories_path, class: "dropdown-item" %>
-      </div>
-
-    <li class="nav-item active">
-      <%= link_to 'Logout', logout_path, class: "nav-link", method: :delete %>  
-    </li>
-  <% end %>
-  
-  </ul>
-  <!--
-  <form class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form>
-  -->
-</div>
+  </div>
 </nav>
