@@ -3,5 +3,4 @@ import "@hotwired/turbo-rails"
 import "controllers"
 
 // added by me : 
-import "popper"
 import "bootstrap"

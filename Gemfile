@@ -6,12 +6,13 @@ ruby "3.1.1"
 gem "rails", "~> 7.0.3"
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheetsria
-gem 'sass-rails'
-gem 'bootstrap', '~> 5.1', '>= 5.1.3'
+gem 'sassc-rails'
+gem 'bootstrap', '>= 5.1.3'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+#gem 'turbolinks', '~> 5'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.7'
+#gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -27,7 +28,7 @@ gem 'stimulus-rails', '~> 1.0', '>= 1.0.4'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
-gem 'will_paginate', '~> 3.1.0'
+#gem 'will_paginate', '~> 3.1.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
