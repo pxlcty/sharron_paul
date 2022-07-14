@@ -6,64 +6,64 @@
         
     <%= form_with(model: @media_link, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
 
-        <div class="form-group row">
-            <%= f.label :image_url, class: "col-1 col-form-label text-light" %>
+        <div class="form-group row mb-3">
+            <%= f.label :image_url, class: "col-2 col-form-label text-light" %>
             <div class="col-10">
                 <%= f.text_field :image_url, class: "form-control shadow rounded", placeholder: "Link to preview image", required: false %>
             </div>
 
         </div>
-        <div class="form-group row">
-            <%= f.label :headline, class: "col-1 col-form-label text-light" %>
+        <div class="form-group row mb-3">
+            <%= f.label :headline, class: "col-2 col-form-label text-light" %>
             <div class="col-10">
                 <%= f.text_field :headline, class: "form-control shadow rounded", placeholder: "Headline", required: true %>
             </div>
         </div>
 
-        <div class="form-group row">
-            <%= f.label :year, class: "col-1 col-form-label text-light" %>
+        <div class="form-group row mb-3">
+            <%= f.label :year, class: "col-2 col-form-label text-light" %>
             <div class="col-2">
                 <%= f.text_field :year, class: "form-control shadow rounded", type: "number", min: "1950", maxlength: "4", placeholder: "Year", required: false %>
             </div>
         </div>
 
-        <div class="form-group row">
-            <%= f.label :description, class: "col-1 col-form-label text-light" %>
+        <div class="form-group row mb-3">
+            <%= f.label :description, class: "col-2 col-form-label text-light" %>
             <div class="col-10">
                 <%= f.text_area :description, class: "form-control shadow rounded", placeholder: "Description", required: false %>
             </div>
         </div>
 
-        <div class="form-group row">
-            <%= f.label :description_link, class: "col-1 col-form-label text-light" %>
+        <div class="form-group row mb-3">
+            <%= f.label :description_link, class: "col-2 col-form-label text-light" %>
             <div class="col-10">
                 <%= f.text_field :description_link, class: "form-control shadow rounded", placeholder: "Link text", required: true %>
             </div>
         </div>
 
-        <div class="form-group row">
-            <%= f.label :media_link, class: "col-1 col-form-label text-light" %>
+        <div class="form-group row mb-3">
+            <%= f.label :media_link, class: "col-2 col-form-label text-light" %>
             <div class="col-10">
                 <%= f.text_field :media_link, class: "form-control shadow rounded", placeholder: "url to external media", required: true %>
             </div>
         </div>
 
-        <div class="form-group row">
-            <%= f.label :points, class: "col-1 col-form-label text-light" %>
+        <div class="form-group row mb-3">
+            <%= f.label :points, class: "col-2 col-form-label text-light" %>
             <div class="col-2">
                 <%= f.text_field :points, class: "form-control shadow rounded", type: "number", min: "0", maxlength: "4", placeholder: "Points", required: true %>
             </div>
         </div>
 
-        <div class="form-group row">
-            <%= f.label :media_category_id, class: "col-1 col-form-label text-light" %>
+        <div class="form-group row mb-3">
+            <%= f.label :media_category_id, class: "col-2 col-form-label text-light" %>
             <div class="col-4">
             <%= f.select :media_category_id, @categories.map { |category| [ category.name, category.id ] }, include_blank: false, required: true %>
             </div>
         </div>
 
 
-        <div class="form-group row justify-content-center">
+        <div class="form-group mt-3 text-center">
         <%= f.submit class: "btn btn-outline-light btn-lg" %>
         </div>
         

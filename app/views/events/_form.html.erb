@@ -6,28 +6,28 @@
     <%= @event.time %>
     <%= form_with(model: @event, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
 
-        <div class="form-group row">
+        <div class="form-group row mb-3">
             <%= f.label :image_url, class: "col-2 col-form-label text-light" %>
             <div class="col-10">
                 <%= f.text_field :image_url, class: "form-control shadow rounded", placeholder: "Promo/Graphic url" %>
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row mb-3">
             <%= f.label :headline, class: "col-2 col-form-label text-danger" %>
             <div class="col-10">
                 <%= f.text_field :headline, class: "form-control shadow rounded", placeholder: "Show headline (Required)", required: true %>
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row mb-3">
             <%= f.label :description_long, class: "col-2 col-form-label text-light" %>
             <div class="col-10">
                 <%= f.text_area :description_long, rows: 6, class: "form-control shadow rounded", placeholder: "Long Description" %>
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row mb-3">
             <%= f.label :description_short, class: "col-2 col-form-label text-danger" %>
             <div class="col-10">
                 <%= f.text_area :description_short, rows: 2, class: "form-control shadow rounded", placeholder: "Short Description", required: true %>
@@ -35,7 +35,7 @@
         </div>
 
 
-        <div class="form-group row">
+        <div class="form-group row mb-3">
             <%= f.label :event_year, class: "col-2 col-form-label text-danger" %>
             <div class="col-2">
                 <%= f.text_field :event_year, class: "form-control shadow rounded", type: "number", min: "1950", max: "2099", maxlength: "4", value: @event.time.to_s[0, 4], placeholder: "Year", required: true %>
@@ -54,66 +54,66 @@
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row mb-3">
             <%= f.label :location_name, class: "col-2 col-form-label text-danger" %>
             <div class="col-10">
                 <%= f.text_field :location_name, class: "form-control shadow rounded", placeholder: "Location name", required: true %>
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row mb-3">
             <%= f.label :location_url, class: "col-2 col-form-label text-light" %>
             <div class="col-10">
                 <%= f.text_field :location_url, class: "form-control shadow rounded", placeholder: "Location url" %>
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row mb-3">
             <%= f.label :location_street, class: "col-2 col-form-label text-light" %>
             <div class="col-10">
                 <%= f.text_field :location_street, class: "form-control shadow rounded", placeholder: "Street address" %>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group row mb-3">
             <%= f.label :location_city, class: "col-2 col-form-label text-light" %>
             <div class="col-10">
                 <%= f.text_field :location_city, class: "form-control shadow rounded", placeholder: "City" %>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group row mb-3">
             <%= f.label :location_state, class: "col-2 col-form-label text-light" %>
             <div class="col-10">
                 <%= f.text_field :location_state, class: "form-control shadow rounded", placeholder: "State" %>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group row mb-3">
             <%= f.label :location_zip, class: "col-2 col-form-label text-light" %>
             <div class="col-10">
                 <%= f.text_field :location_zip, class: "form-control shadow rounded", placeholder: "zip code" %>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group row mb-3">
             <%= f.label :location_country, class: "col-2 col-form-label text-light" %>
             <div class="col-10">
                 <%= f.text_field :location_country, class: "form-control shadow rounded", placeholder: "USA" %>
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row mb-3">
             <%= f.label :map_url, class: "col-2 col-form-label text-light" %>
             <div class="col-10">
                 <%= f.text_field :map_url, class: "form-control shadow rounded", placeholder: "Google Maps url" %>
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row mb-3">
             <%= f.label :tickets_url, class: "col-2 col-form-label text-light" %>
             <div class="col-10">
                 <%= f.text_field :tickets_url, class: "form-control shadow rounded", placeholder: "Tickets url" %>
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row mb-3">
             <%= f.label :news_alert, class: "col-2 col-form-label text-light" %>
             <div class="col-1">
                 <%= f.check_box :alert_active %>
@@ -124,7 +124,7 @@
             </div>
         </div>
         
-        <div class="form-group row justify-content-center">
+        <div class="form-group text-center">
         <%= f.submit class: "btn btn-outline-light btn-lg" %>
         </div>
         
